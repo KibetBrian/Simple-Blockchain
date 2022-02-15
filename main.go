@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"blockchain/processor"
+	"blockchain/utils"
+)
 
 func main() {
-	fmt.Println("Hey go!")
+	genesisTransaction := []string{"Initial Transaction"}
+	genesisBlock := processor.CreateNewBlock([]byte{}, genesisTransaction)
+	utils.PrintBlockInformation(genesisBlock)
 }
