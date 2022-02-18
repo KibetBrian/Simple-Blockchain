@@ -32,3 +32,8 @@ func PrintBlockChain (blockChain *Blockchain){
 		fmt.Printf("Block %v: Hash %x \n", i,string(blockChain.Blocks[i].BlockHash))
 	}
 }
+
+//Convert integer to hex
+func ConvertToHex (input int64) []byte {
+	return []byte(fmt.Sprintf("%x", input))
+}

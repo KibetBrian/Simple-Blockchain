@@ -11,9 +11,10 @@ type Block struct {
 	BlockHash []byte
 	TimeStamp int64
 	Data      []byte
+	Nonce	  int
 }
 
-//Function to generate new block
+//Function to create new block
 func GenerateNewBlock(prevHash []byte, data string) *Block {
 	currentTime := time.Now().UnixNano()
 	block := &Block{
@@ -21,7 +22,10 @@ func GenerateNewBlock(prevHash []byte, data string) *Block {
 		Data:      []byte(data),
 		TimeStamp: currentTime,
 	}
-	block.BlockHash = GenerateNewHash(prevHash, data, uint64(currentTime))
+	pow := NewProofOfWork(block)
+	nonce, hash := pow.Run()
+	block.BlockHash =hash
+	block.Nonce = nonce
 	return block
 }
 
