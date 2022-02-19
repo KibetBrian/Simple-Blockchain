@@ -33,7 +33,9 @@ func PrintBlockChain (blockChain *Blockchain){
 	}
 }
 
-//Convert integer to hex
+//Takes type int64 as input and return bytes
 func ConvertToHex (input int64) []byte {
-	return []byte(fmt.Sprintf("%x", input))
+	 b := make([]byte, 8)
+	 binary.LittleEndian.PutUint64(b, uint64(input))
+	return b
 }
